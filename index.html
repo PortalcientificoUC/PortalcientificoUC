@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Pesquisa, Extensão e Ética em Pesquisa Científico</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Cor da paleta acadêmica */
+        :root {
+            --primary-blue: #0D47A1; /* Azul escuro e sóbrio */
+            --accent-gold: #FFC107;  /* Dourado para destaque */
+            --light-gray: #f4f7f6;
+        }
+        .bg-primary { background-color: var(--primary-blue); }
+        .text-accent { color: var(--accent-gold); }
+        .bg-accent { background-color: var(--accent-gold); }
+        .border-accent { border-color: var(--accent-gold); }
+        .hover\:bg-accent-dark:hover { background-color: #d4a206; }
+        .text-justify { text-align: justify; }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .card-content {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body class="bg-light-gray text-gray-800">
+
+    <!-- CABEÇALHO FIXO -->
+    <header id="inicio" class="bg-primary text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-lg md:text-xl font-bold">Portal de Pesquisa, Extensão e Ética em Pesquisa Científico</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#inicio" class="hover:text-accent transition">Início</a>
+                <a href="#formacao" class="hover:text-accent transition">Formação</a>
+                <a href="#referencias" class="hover:text-accent transition">Referências</a>
+                <a href="#editais" class="hover:text-accent transition">Editais</a>
+                <a href="#uninassau" class="hover:text-accent transition">UNINASSAU</a>
+            </nav>
+            <!-- Menu Hamburguer para Mobile -->
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary/95">
+            <a href="#inicio" class="block py-2 px-6 text-white hover:bg-blue-800">Início</a>
+            <a href="#formacao" class="block py-2 px-6 text-white hover:bg-blue-800">Formação</a>
+            <a href="#referencias" class="block py-2 px-6 text-white hover:bg-blue-800">Referências</a>
+            <a href="#editais" class="block py-2 px-6 text-white hover:bg-blue-800">Editais</a>
+            <a href="#uninassau" class="block py-2 px-6 text-white hover:bg-blue-800">UNINASSAU</a>
+        </div>
+    </header>
+
+    <!-- BOTÃO FLUTUANTE DO CHATBOT -->
+    <a href="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/07/02/16/20250702162432-WLZJURW4.json" target="_blank" rel="noopener noreferrer" class="fixed bottom-5 right-5 z-50 text-center group">
+        <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.837 8.837 0 01-4.445-1.272l-3.338 1.113a1 1 0 01-1.265-1.265l1.113-3.338A8.837 8.837 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.416 14.828a1 1 0 00-.028.144l-1.023 3.07a.25.25 0 00.316.316l3.07-1.023a1 1 0 00.144-.028A6.971 6.971 0 0010 16c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6c0 1.663.627 3.195 1.656 4.312z" clip-rule="evenodd" />
+            </svg>
+        </div>
+        <p class="text-xs mt-1 text-primary font-semibold">Clique aqui para tirar suas dúvidas</p>
+    </a>
+
+    <main class="pt-16">
+        <!-- SEÇÃO BANNER -->
+        <section class="h-[60vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-white" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1532187863486-abf9db5a9997?q=80&w=1920&auto=format&fit=crop');">
+            <div class="text-center px-4">
+                <h2 class="text-4xl md:text-6xl font-bold text-shadow-lg">Conectando Você ao Universo da Pesquisa, Extensão e a Ética em Pesquisa Científica</h2>
+            </div>
+        </section>
+
+        <!-- SEÇÃO FORMAÇÃO DO PESQUISADOR -->
+        <section id="formacao" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4 text-primary">A Importância da Iniciação Científica e Extensão</h2>
+                <p class="text-center max-w-3xl mx-auto mb-12">Explore os pilares que transformam a vida acadêmica, desenvolvendo habilidades críticas e conectando a universidade à sociedade.</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card Iniciação Científica -->
+                    <div class="card p-6 md:col-span-1">
+                        <div class="card-content">
+                            <h3 class="text-2xl font-bold mb-3 text-primary text-center">Iniciação Científica (IC)</h3>
+                            <p class="text-justify mb-6">A Iniciação Científica é a porta de entrada para o mundo da pesquisa. Ela permite que estudantes de graduação vivenciem o método científico na prática, desenvolvendo pensamento crítico, capacidade analítica e habilidades de resolução de problemas. Participar de um projeto de IC enriquece o currículo, aprofunda o conhecimento em uma área de interesse e prepara o aluno para desafios futuros, como a pós-graduação e um mercado de trabalho cada vez mais exigente.</p>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1RKIangdYidhFQ1-k6MCYPl7DLoT6_3qT?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-center mt-auto inline-block bg-accent text-primary font-bold py-2 px-5 rounded-lg hover:bg-accent-dark transition">
+                            Editais PIC
+                        </a>
+                    </div>
+                    
+                    <!-- Card Projetos de Extensão -->
+                    <div class="card p-6 md:col-span-1">
+                         <div class="card-content">
+                            <h3 class="text-2xl font-bold mb-3 text-primary text-center">Projetos de Extensão (PE)</h3>
+                            <p class="text-justify mb-6">Os Projetos de Extensão são a ponte entre a universidade e a comunidade. Eles proporcionam a aplicação prática do conhecimento adquirido em sala de aula para solucionar problemas reais da sociedade. Essa interação promove o desenvolvimento da responsabilidade social, da empatia e de habilidades de comunicação e liderança, formando cidadãos mais conscientes e profissionais mais completos, capazes de gerar um impacto positivo ao seu redor.</p>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1GhPCk_B56xolYamM2-Wi5HYCQG3aD8La?usp=drive_link" target="_blank" rel="noopener noreferrer" class="text-center mt-auto inline-block bg-accent text-primary font-bold py-2 px-5 rounded-lg hover:bg-accent-dark transition">
+                            Editais PROPEX
+                        </a>
+                    </div>
+
+                    <!-- Card História das Publicações -->
+                    <div class="card p-6 md:col-span-1">
+                        <div class="card-content">
+                            <h3 class="text-2xl font-bold mb-3 text-primary text-center">História das Publicações Científicas UNINASSAU CACOAL</h3>
+                            <p class="text-justify mb-6">Aqui você acessa a nossa história científica, construída com muita dedicação a produção científica.</p>
+                        </div>
+                        <a href="https://linktr.ee/uninassau.cacoal" target="_blank" rel="noopener noreferrer" class="text-center mt-auto inline-block bg-accent text-primary font-bold py-2 px-5 rounded-lg hover:bg-accent-dark transition">
+                            Conheça nossa história
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO REFERÊNCIAS MUNDIAIS -->
+        <section id="referencias" class="py-20 bg-light-gray">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary">Principais Bases de Dados para sua Pesquisa</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card Pubmed -->
+                    <div class="card p-6 text-center">
+                        <div class="card-content">
+                            <h3 class="text-2xl font-bold mb-3 text-primary text-center">PubMed</h3>
+                            <p class="text-justify mb-6">O PubMed é um recurso gratuito que dá suporte à busca e recuperação de literatura biomédica e de ciências biológicas. As citações no PubMed provêm principalmente das áreas de biomedicina e saúde, e disciplinas relacionadas.</p>
+                        </div>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-block bg-accent text-primary font-bold py-2 px-5 rounded-lg hover:bg-accent-dark transition">Acessar</a>
+                        <p class="text-xs mt-4 text-gray-500">Fonte: National Library of Medicine (NLM)</p>
+                    </div>
+
+                    <!-- Card Cochrane -->
+                    <div class="card p-6 text-center">
+                        <div class="card-content">
+                            <h3 class="text-2xl font-bold mb-3 text-primary text-center">Cochrane Library</h3>
+                            <p class="text-justify mb-6">A Cochrane Library é uma coleção de bancos de dados mantida pela Cochrane, uma organização internacional que produz e dissemina evidências de alta qualidade sobre saúde, especialmente através de revisões sistemáticas.</p>
+                        </div>
+                        <a href="https://www.cochranelibrary.com/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-block bg-accent text-primary font-bold py-2 px-5 rounded-lg hover:bg-accent-dark transition">Acessar</a>
+                        <p class="text-xs mt-4 text-gray-500">Fonte: Cochrane</p>
+                    </div>
+
+                    <!-- Card Scopus -->
+                    <div class="card p-6 text-center">
+                        <div class="card-content">
+                            <h3 class="text-2xl font-bold mb-3 text-primary text-center">Scopus</h3>
+                            <p class="text-justify mb-6">Scopus é o maior banco de dados de resumos e citações de literatura com revisão por pares: periódicos científicos, livros e anais de conferências. Oferece uma visão abrangente da produção de pesquisa mundial.</p>
+                        </div>
+                        <a href="https://www.scopus.com/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-block bg-accent text-primary font-bold py-2 px-5 rounded-lg hover:bg-accent-dark transition">Acessar</a>
+                        <p class="text-xs mt-4 text-gray-500">Fonte: Elsevier</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO EDITAIS -->
+        <section id="editais" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary">Oportunidades na Região Norte</h2>
+                <!-- O container dos editais será preenchido pelo JavaScript -->
+                <div id="editais-container" class="grid md:grid-cols-3 gap-8">
+                    <!-- Cards de editais aparecerão aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO UNINASSAU E CEP -->
+        <section id="uninassau" class="py-20 bg-light-gray">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-stretch">
+                <!-- Coluna UNINASSAU -->
+                <div class="text-center flex flex-col">
+                    <h2 class="text-3xl font-bold mb-8 text-primary md:min-h-[5rem] flex items-center justify-center">Pesquisa e Extensão na UNINASSAU</h2>
+                    <div class="flex flex-col items-center space-y-3 mt-auto">
+                        <a href="https://www.uninassau.edu.br/institucional/cacoal" target="_blank" rel="noopener noreferrer" class="w-full max-w-xs bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition">Site UNINASSAU Cacoal</a>
+                        <a href="https://linktr.ee/uninassau.cacoal?utm_source=linktree_profile_share&ltsid=114c4957-b3cb-4b79-a620-9798dc476489" target="_blank" rel="noopener noreferrer" class="w-full max-w-xs bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition">Projetos em Cacoal</a>
+                        <a href="https://www.instagram.com/uninassau.cacoal?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="w-full max-w-xs bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition">Ver Linktr.ee UNINASSAU CACOAL</a>
+                    </div>
+                    <p class="text-xs mt-6 text-gray-500">Fonte: UNINASSAU Cacoal</p>
+                </div>
+
+                <!-- Coluna CEP -->
+                <div class="text-center flex flex-col">
+                    <h2 class="text-3xl font-bold mb-8 text-primary md:min-h-[5rem] flex items-center justify-center">Comitê de Ética em Pesquisa</h2>
+                    <h3 class="text-xl font-semibold mb-6">CEP – UNINASSAU CACOAL</h3>
+                    <div class="flex flex-col items-center space-y-3 mt-auto">
+                        <a href="https://drive.google.com/drive/folders/1AdnqsJX3QNGJMQ52eMcjzVP_QCRrW1zw?usp=sharing" target="_blank" rel="noopener noreferrer" class="w-full max-w-xs bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition">Documentos do CEP</a>
+                        <a href="https://www.gov.br/conselho-nacional-de-saude/pt-br/camaras-tecnicas-e-comissoes/conep/publicacoes" target="_blank" rel="noopener noreferrer" class="w-full max-w-xs bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition">Publicações da CONEP</a>
+                        <a href="https://plataformabrasil.saude.gov.br/login.jsf" target="_blank" rel="noopener noreferrer" class="w-full max-w-xs bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition">Plataforma Brasil</a>
+                    </div>
+                    <p class="text-xs mt-6 text-gray-500">Fonte: CEP-UNINASSAU CACOAL</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-primary text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 - Portal de Pesquisa, Extensão e Ética em Pesquisa Científico.</p>
+        </div>
+    </footer>
+
+    <!-- Script para Menu Mobile -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        // Fecha o menu ao clicar em um link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+    
+    <!-- SCRIPT PARA ATUALIZAÇÃO DINÂMICA DOS EDITAIS -->
+    <script>
+        // ==================================================================
+        // INSTRUÇÕES: PARA ATUALIZAR, ADICIONE NOVOS EDITAIS AQUI DENTRO
+        // ==================================================================
+        // Copie o bloco entre { e }, cole abaixo do último e preencha com as novas informações.
+        // O site será atualizado automaticamente.
+        const editais = [
+            {
+                titulo: "Edital Universal - Amazonas",
+                data: "20/06/2025",
+                resumo: "Apoio a projetos de pesquisa científica, tecnológica e de inovação em todas as áreas do conhecimento.",
+                link: "http://www.fapeam.am.gov.br/editais/",
+                fonte: "FAPEAM - Amazonas"
+            },
+            {
+                titulo: "Programa de Doutorado (Pará)",
+                data: "10/06/2025",
+                resumo: "Concessão de bolsas de doutorado para instituições de ensino superior e pesquisa no estado do Pará.",
+                link: "https://www.fapespa.pa.gov.br/pt-br/editais",
+                fonte: "FAPESPA - Pará"
+            },
+            {
+                titulo: "Programa de Iniciação Científica (Rondônia)",
+                data: "01/06/2025",
+                resumo: "Edital para seleção de projetos e bolsistas para o Programa de Apoio à Iniciação Científica e Tecnológica.",
+                link: "https://rondonia.ro.gov.br/fapero/",
+                fonte: "FAPERO - Rondônia"
+            }
+            // Para adicionar um novo edital, copie o bloco acima, cole aqui e edite os dados.
+            // Exemplo:
+            // ,
+            // {
+            //     titulo: "Novo Edital - Tocantins",
+            //     data: "10/08/2025",
+            //     resumo: "Descrição do novo edital de Tocantins.",
+            //     link: "https://www.to.gov.br/fapt/chamadas-publicas",
+            //     fonte: "FAPT - Tocantins"
+            // }
+        ];
+        // ==================================================================
+        // FIM DA ÁREA DE ATUALIZAÇÃO
+        // ==================================================================
+
+        // Função que cria os cards de editais na página
+        function renderizarEditais() {
+            const container = document.getElementById('editais-container');
+            if (!container) return;
+            
+            container.innerHTML = '';
+
+            editais.forEach(edital => {
+                const cardHtml = `
+                    <div class="card p-6">
+                        <div class="card-content">
+                            <h3 class="text-xl font-bold mb-2 text-center">${edital.titulo}</h3>
+                            <p class="text-sm text-gray-500 mb-3 text-center">${edital.data}</p>
+                            <p class="text-justify mb-4">${edital.resumo}</p>
+                        </div>
+                        <a href="${edital.link}" target="_blank" rel="noopener noreferrer" class="mt-auto font-bold text-primary hover:text-accent text-center">Ver Editais &rarr;</a>
+                        <p class="text-xs mt-4 text-gray-500 text-center">Fonte: ${edital.fonte}</p>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderizarEditais);
+    </script>
+</body>
+</html>
