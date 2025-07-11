@@ -87,9 +87,6 @@
         </div>
     </header>
 
-    <!-- O BOTÃO DO CHATBOT SERÁ INJETADO AQUI PELO SCRIPT DO BOTPRESS -->
-    <!-- O CÓDIGO ANTIGO DO BOTÃO FOI REMOVIDO -->
-
     <main class="pt-16">
         <!-- SEÇÃO BANNER -->
         <section class="h-[60vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-white" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1532187863486-abf9db5a9997?q=80&w=1920&auto=format&fit=crop');">
@@ -243,16 +240,11 @@
     </script>
 
     <!-- SCRIPT DE INTEGRAÇÃO DO CHATBOT -->
-    <!-- Este script injeta o botão flutuante e a janela de chat na página -->
     <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
     <script>
-      // Garante que o chatbot só seja inicializado após a página estar completamente carregada,
-      // o que previne conflitos com outros scripts.
-      document.addEventListener("DOMContentLoaded", function () {
-        window.botpressWebChat.init({
-          // Configurações do seu bot no Botpress
-          "configUrl": "https://files.bpcontent.cloud/2025/07/02/16/20250702162432-WLZJURW4.json"
-        });
+      // CORREÇÃO: Inicializa o chatbot de forma direta, que é mais robusta.
+      window.botpressWebChat.init({
+        "configUrl": "https://files.bpcontent.cloud/2025/07/02/16/20250702162432-WLZJURW4.json"
       });
     </script>
 
