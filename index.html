@@ -243,11 +243,16 @@
     </script>
 
     <!-- SCRIPT DE INTEGRAÇÃO DO CHATBOT -->
+    <!-- Este script injeta o botão flutuante e a janela de chat na página -->
     <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
     <script>
-      window.botpressWebChat.init({
-        // Substitua as configurações abaixo pelas do seu bot se forem diferentes
-        "configUrl": "https://files.bpcontent.cloud/2025/07/02/16/20250702162432-WLZJURW4.json"
+      // Garante que o chatbot só seja inicializado após a página estar completamente carregada,
+      // o que previne conflitos com outros scripts.
+      document.addEventListener("DOMContentLoaded", function () {
+        window.botpressWebChat.init({
+          // Configurações do seu bot no Botpress
+          "configUrl": "https://files.bpcontent.cloud/2025/07/02/16/20250702162432-WLZJURW4.json"
+        });
       });
     </script>
 
