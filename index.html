@@ -87,9 +87,6 @@
         </div>
     </header>
 
-    <!-- O BOTÃO DO CHATBOT SERÁ INJETADO AQUI PELO SCRIPT DO BOTPRESS -->
-    <!-- O CÓDIGO ANTIGO DO BOTÃO FOI REMOVIDO -->
-
     <main class="pt-16">
         <!-- SEÇÃO BANNER -->
         <section class="h-[60vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-white" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1532187863486-abf9db5a9997?q=80&w=1920&auto=format&fit=crop');">
@@ -190,8 +187,8 @@
             container.innerHTML = '<div class="loader col-span-full"></div>';
 
             try {
-                const url = `./editais.json?v=${new Date().getTime()}`;
-                const response = await fetch(url);
+                const url = `./editais.json`;
+                const response = await fetch(url, { cache: 'no-cache' });
                 
                 if (response.status === 404) {
                      throw new Error("Arquivo 'editais.json' não encontrado. O robô pode não ter sido executado ainda. Siga o passo 5 do guia para executá-lo manualmente.");
@@ -245,9 +242,14 @@
     <!-- SCRIPT DE INTEGRAÇÃO DO CHATBOT -->
     <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
     <script>
-      window.botpressWebChat.init({
-        // Substitua as configurações abaixo pelas do seu bot se forem diferentes
-        "configUrl": "https://files.bpcontent.cloud/2025/07/02/16/20250702162432-WLZJURW4.json"
+      window.addEventListener('load', () => {
+        if (window.botpressWebChat) {
+            window.botpressWebChat.init({
+              "configUrl": "https://files.bpcontent.cloud/2025/07/02/16/20250702162432-WLZJURW4.json"
+            });
+        } else {
+            console.error("Botpress WebChat não foi carregado.");
+        }
       });
     </script>
 
