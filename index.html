@@ -87,13 +87,8 @@
         </div>
     </header>
 
-    <!-- BOTÃO FLUTUANTE DO CHATBOT -->
-    <a href="https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/07/02/16/20250702162432-WLZJURW4.json" target="_blank" rel="noopener noreferrer" class="fixed bottom-5 right-5 z-50 text-center group">
-        <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.837 8.837 0 01-4.445-1.272l-3.338 1.113a1 1 0 01-1.265-1.265l1.113-3.338A8.837 8.837 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.416 14.828a1 1 0 00-.028.144l-1.023 3.07a.25.25 0 00.316.316l3.07-1.023a1 1 0 00.144-.028A6.971 6.971 0 0010 16c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6c0 1.663.627 3.195 1.656 4.312z" clip-rule="evenodd" /></svg>
-        </div>
-        <p class="text-xs mt-1 text-primary font-semibold">Clique aqui para tirar suas dúvidas</p>
-    </a>
+    <!-- O BOTÃO DO CHATBOT SERÁ INJETADO AQUI PELO SCRIPT DO BOTPRESS -->
+    <!-- O CÓDIGO ANTIGO DO BOTÃO FOI REMOVIDO -->
 
     <main class="pt-16">
         <!-- SEÇÃO BANNER -->
@@ -131,7 +126,7 @@
         <!-- SEÇÃO EDITAIS -->
         <section id="editais" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12 text-primary">Oportunidades na Região Norte</h2>
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary">Oportunidades Nacionais e Regionais</h2>
                 <div id="editais-container" class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
                     <!-- Cards de editais gerados pelo script aparecerão aqui -->
                 </div>
@@ -195,7 +190,7 @@
             container.innerHTML = '<div class="loader col-span-full"></div>';
 
             try {
-                const url = new URL(`editais.json?v=${new Date().getTime()}`, window.location.href);
+                const url = `./editais.json?v=${new Date().getTime()}`;
                 const response = await fetch(url);
                 
                 if (response.status === 404) {
@@ -246,5 +241,15 @@
 
         document.addEventListener('DOMContentLoaded', fetchEditais);
     </script>
+
+    <!-- SCRIPT DE INTEGRAÇÃO DO CHATBOT -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
+    <script>
+      window.botpressWebChat.init({
+        // Substitua as configurações abaixo pelas do seu bot se forem diferentes
+        "configUrl": "https://files.bpcontent.cloud/2025/07/02/16/20250702162432-WLZJURW4.json"
+      });
+    </script>
+
 </body>
 </html>
