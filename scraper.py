@@ -3,6 +3,15 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
+from urllib.parse import urljoin
+
+# ==============================================================================
+# FUNÇÃO AUXILIAR
+# Para garantir que todos os links sejam completos (absolutos).
+# ==============================================================================
+def make_absolute_url(base_url, link):
+    """Converte um link relativo em um link absoluto."""
+    return urljoin(base_url, link)
 
 # ==============================================================================
 # FUNÇÕES DE BUSCA (SCRAPERS)
@@ -15,16 +24,18 @@ def fetch_fapac_editais(url, fonte):
         print(f"Buscando em: {fonte}")
         response = requests.get(url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
         response.raise_for_status()
+        base_url = response.url
         soup = BeautifulSoup(response.content, 'html.parser')
         editais = []
         for item in soup.select('article.elementor-post', limit=3):
             titulo_tag = item.select_one('h3.elementor-post__title a')
             if titulo_tag:
                 titulo = titulo_tag.text.strip()
-                link = titulo_tag['href']
+                link_relativo = titulo_tag['href']
+                link_absoluto = make_absolute_url(base_url, link_relativo)
                 resumo = item.select_one('div.elementor-post__excerpt p').text.strip() if item.select_one('div.elementor-post__excerpt p') else "Sem resumo."
                 data = item.select_one('span.elementor-post-date').text.strip() if item.select_one('span.elementor-post-date') else "Data não encontrada"
-                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link, "fonte": fonte})
+                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link_absoluto, "fonte": fonte})
         print(f"-> Encontrados {len(editais)} editais.")
         return editais
     except Exception as e:
@@ -37,16 +48,18 @@ def fetch_fapemat_editais(url, fonte):
         print(f"Buscando em: {fonte}")
         response = requests.get(url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
         response.raise_for_status()
+        base_url = response.url
         soup = BeautifulSoup(response.content, 'html.parser')
         editais = []
         for item in soup.select('div.card-edital', limit=3):
             titulo_tag = item.select_one('h4.card-title a')
             if titulo_tag:
                 titulo = titulo_tag.text.strip()
-                link = titulo_tag['href']
+                link_relativo = titulo_tag['href']
+                link_absoluto = make_absolute_url(base_url, link_relativo)
                 resumo = item.select_one('p.card-text').text.strip() if item.select_one('p.card-text') else "Sem resumo."
                 data = item.select_one('small.text-muted').text.strip() if item.select_one('small.text-muted') else "Data não encontrada"
-                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link, "fonte": fonte})
+                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link_absoluto, "fonte": fonte})
         print(f"-> Encontrados {len(editais)} editais.")
         return editais
     except Exception as e:
@@ -59,16 +72,18 @@ def fetch_fapeg_editais(url, fonte):
         print(f"Buscando em: {fonte}")
         response = requests.get(url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
         response.raise_for_status()
+        base_url = response.url
         soup = BeautifulSoup(response.content, 'html.parser')
         editais = []
         for item in soup.select('article.post', limit=3):
             titulo_tag = item.select_one('h2.entry-title a')
             if titulo_tag:
                 titulo = titulo_tag.text.strip()
-                link = titulo_tag['href']
+                link_relativo = titulo_tag['href']
+                link_absoluto = make_absolute_url(base_url, link_relativo)
                 resumo = item.select_one('div.entry-content p').text.strip() if item.select_one('div.entry-content p') else "Sem resumo."
                 data = item.select_one('span.entry-date').text.strip() if item.select_one('span.entry-date') else "Data não encontrada"
-                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link, "fonte": fonte})
+                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link_absoluto, "fonte": fonte})
         print(f"-> Encontrados {len(editais)} editais.")
         return editais
     except Exception as e:
@@ -81,16 +96,18 @@ def fetch_fundect_editais(url, fonte):
         print(f"Buscando em: {fonte}")
         response = requests.get(url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
         response.raise_for_status()
+        base_url = response.url
         soup = BeautifulSoup(response.content, 'html.parser')
         editais = []
         for item in soup.select('div.edital-item', limit=3):
             titulo_tag = item.select_one('h4.edital-title a')
             if titulo_tag:
                 titulo = titulo_tag.text.strip()
-                link = titulo_tag['href']
+                link_relativo = titulo_tag['href']
+                link_absoluto = make_absolute_url(base_url, link_relativo)
                 resumo = item.select_one('p').text.strip() if item.select_one('p') else "Sem resumo."
                 data = "Verificar no link"
-                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link, "fonte": fonte})
+                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link_absoluto, "fonte": fonte})
         print(f"-> Encontrados {len(editais)} editais.")
         return editais
     except Exception as e:
@@ -103,16 +120,18 @@ def fetch_cnpq_editais(url, fonte):
         print(f"Buscando em: {fonte}")
         response = requests.get(url, timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
         response.raise_for_status()
+        base_url = response.url
         soup = BeautifulSoup(response.content, 'html.parser')
         editais = []
         for item in soup.select('div.call-item-content', limit=3):
             titulo_tag = item.select_one('h3 a')
             if titulo_tag:
                 titulo = titulo_tag.text.strip()
-                link = titulo_tag['href']
+                link_relativo = titulo_tag['href']
+                link_absoluto = make_absolute_url(base_url, link_relativo)
                 resumo = item.select_one('p').text.strip() if item.select_one('p') else "Sem resumo."
                 data = "Verificar no link"
-                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link, "fonte": fonte})
+                editais.append({"titulo": titulo, "data": data, "resumo": resumo, "link": link_absoluto, "fonte": fonte})
         print(f"-> Encontrados {len(editais)} editais.")
         return editais
     except Exception as e:
